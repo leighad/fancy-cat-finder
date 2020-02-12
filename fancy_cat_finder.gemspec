@@ -1,10 +1,10 @@
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "fancy_cat_finder_project/version"
+require "fancy_cat_finder/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "fancy_cat_finder_project"
-  spec.version       = FancyCatFinderProject::VERSION
+  spec.name          = "fancy_cat_finder"
+  spec.version       = FancyCatFinder::VERSION
   spec.authors       = ["leighad"]
   spec.email         = ["cdversiontwo@gmail.com"]
 
