@@ -1,24 +1,33 @@
 class FancyCatFinder::CLI 
 
     def start
+        # welcome user
         puts ""
         puts "   Welcome to the Fancy Cat Finder!"
         puts ""
         # render_ascii_welcome
-        # logo = {}
         puts "  ^   =   ^   =   ^     =   ^   =   ^ " 
         puts " / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ "
         puts "( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )"
         puts " \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
+
+        # first scrape
         FancyCatFinder::Scraper.scrape_names 
 
         main_menu
         # list_names
     end
 
+    # def render_ascii_welcome
+    #     File.readlines("fancy_welcome.txt") do |line|
+    #         puts line
+    #     end
+    # end
+    ###### need to figure out how to use this ######
+
     def main_menu
-        puts "Please enter the number of your selection."
+        puts "Please enter the number of your selection:"
         puts "1. List all fancy cats"
         #user can then select individual cat for more details
         #like history and personality
@@ -35,28 +44,19 @@ class FancyCatFinder::CLI
         puts nil 
 
     end
-
-    #list_cat_names
-        # print cat_names
-        # def get_names(name_array) 
-        #     name_array.each do |element|
-        #         element.text
-        #     end
-        # end
     
-        def list_names
-            FancyCatFinder::Cat.all.each.with_index(1) do |cat, idx|
-                puts "#{idx}: #{cat.name}"
-            end
+    def list_names
+        FancyCatFinder::Cat.all.each.with_index(1) do |cat, idx|
+            puts "#{idx}: #{cat.name}"
         end
-
-    #get user input
-
-    #fetch attributes of cat selected based on user input
-
-    #or retrieve random fancy cat
-
-    #or generate a cat fact
-
+    end
 
 end
+
+#list_cat_names
+    # print cat_names
+    # def get_names(name_array) 
+    #     name_array.each do |element|
+    #         element.text
+    #     end
+    # end
