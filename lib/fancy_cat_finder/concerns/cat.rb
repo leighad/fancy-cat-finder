@@ -2,14 +2,14 @@ class FancyCatFinder::Cat
     attr_accessor :name, :url, :affection_level, :energy_level, :shedding_level
     @@all = []
 
-    def initialize(details)
-        # @name = details[:name]
-        # @url = details[:url]
+    def initialize(detail_hash)
+        # @name = detail_hash[:name]
+        # @url = detail_hash[:url]
 
-        details.each do |k,v|
+        detail_hash.each do |k,v|
             self.send("#{k}=", v) 
         end
-
+        self.save
     end
 
     def save

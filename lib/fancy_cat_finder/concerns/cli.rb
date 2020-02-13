@@ -13,7 +13,7 @@ class FancyCatFinder::CLI
         puts ""
         FancyCatFinder::Scraper.scrape_names 
 
-        binding.pry 
+        # binding.pry 
         # main_menu
         list_names
     end 
@@ -27,7 +27,9 @@ class FancyCatFinder::CLI
         # end
     
         def list_names
-            FancyCatFinder::Cat.all.each.with_index(1) do |name, idx|
+            FancyCatFinder::Cat.all.each.with_index(1) do |cat, idx|
+                # binding.pry 
+
                 puts "#{idx}: #{cat.name}"
             end
         end
