@@ -11,7 +11,11 @@ class FancyCatFinder::CLI
         puts "( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )"
         puts " \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
+        FancyCatFinder::Scraper.scrape_names 
+
+        binding.pry 
         # main_menu
+        list_names
     end 
 
     #list_cat_names
@@ -22,12 +26,11 @@ class FancyCatFinder::CLI
         #     end
         # end
     
-        def list_names(cat_names)
-            get_names(cat_names).each.with_index(1) do |name, idx|
-                puts "#{idx}: #{name}"
+        def list_names
+            FancyCatFinder::Cat.all.each.with_index(1) do |name, idx|
+                puts "#{idx}: #{cat.name}"
             end
         end
-    #FancyCatFinder::Scraper.scrape_names 
 
     #get user input
 

@@ -7,15 +7,15 @@ class FancyCatFinder::Scraper
 
         # cat = FancyCatFinder::Cat.new(name)
 
-        # list_names(cat_names)
+        # list_names(cat_info)
         cat_info.each do |c|
             details = {
-                name: c[0].text 
-                url: c[0].attributes['href'].value
+                name: c.text,
+                url: c.attributes['href'].value
             }
+            cat = FancyCatFinder::Cat.new(details)
         end
 
-        cat = FancyCatFinder::Cat.new(details)
         
         # name = info[0].text 
         # url = info[0].attributes['href'].value
