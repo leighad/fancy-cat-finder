@@ -22,11 +22,11 @@ class FancyCatFinder::CLI
         #     end
         # end
     
-        # def list_names(cat_names)
-        #     get_names(cat_names).each.with_index(1) do |name, idx|
-        #         puts "#{idx}: #{name}"
-        #     end
-        # end
+        def list_names(cat_names)
+            get_names(cat_names).each.with_index(1) do |name, idx|
+                puts "#{idx}: #{name}"
+            end
+        end
     #FancyCatFinder::Scraper.scrape_names 
 
     #get user input
