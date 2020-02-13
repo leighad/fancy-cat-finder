@@ -1,8 +1,9 @@
 class FancyCatFinder::Scraper
 
-    names = Nokogiri::HTML(open("http://www.vetstreet.com/cats/breeds"))
-
-    cat_names = names.css("div#hub-breed-list-container li") 
+    def self.scrape_names
+        doc = Nokogiri::HTML(open("http://www.vetstreet.com/cats/breeds"))
+        cat_names = doc.css("div#hub-breed-list-container li") 
+    end
 
     # print cat_names
     def get_names(name_array) 
@@ -18,6 +19,10 @@ class FancyCatFinder::Scraper
     end
 
     #get attributes
+    def self.scrape_attributes(cat)
+        # doc = Nokogiri::HTML(open(""))
+        # attributes = doc.css("div#hub-breed-list-container li") 
+    end
 
 
 end

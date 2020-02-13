@@ -14,7 +14,10 @@ class FancyCatFinder::CLI
     end 
 
     #list_cat_names
+    #FancyCatFinder::Scraper.scrape_names 
+
     #get user input
+    
     #fetch attributes of cat selected based on user input
 
     #or retrieve random fancy cat
