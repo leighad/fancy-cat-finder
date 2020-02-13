@@ -1,4 +1,5 @@
 require 'nokogiri'
+require "open-uri"
 
 require_relative "fancy_cat_finder/version"
 # require_relative "fancy_cat_finder/concerns/cat"
