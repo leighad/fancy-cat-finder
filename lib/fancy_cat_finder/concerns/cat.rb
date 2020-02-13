@@ -1,0 +1,3 @@
+class FancyCatFinder::Cat 
+
+end 

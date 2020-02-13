@@ -1,9 +1,12 @@
 require 'nokogiri'
 
 require_relative "fancy_cat_finder/version"
-require_relative "fancy_cat_finder/cli"
-# require_relative "fancy_cat_finder/scraper"
-# require_relative "fancy_cat_finder/cat"
+# require_relative "fancy_cat_finder/concerns/cat"
+require_relative "fancy_cat_finder/concerns/cli"
+# require_relative "fancy_cat_finder/concerns/scraper"
+
+# require_all 'lib'
+
 
 
 # module FancyCatFinder
