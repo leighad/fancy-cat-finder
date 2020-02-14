@@ -1,4 +1,5 @@
 class FancyCatFinder::CLI 
+    attr_accessor :cat_names
 
     def start
         # welcome user
@@ -12,11 +13,13 @@ class FancyCatFinder::CLI
         puts " \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
 
-        # first scrape
+        # 1st scrape
         FancyCatFinder::Scraper.scrape_names 
-
+        
         main_menu
-        # list_names
+        #get_user_input
+
+        list_names
     end
 
     # def render_ascii_welcome
@@ -25,9 +28,10 @@ class FancyCatFinder::CLI
     #     end
     # end
     ###### need to figure out how to use this ######
+    # need "fancy_welcome.txt" file...
 
     def main_menu
-        puts "Please enter the number of your selection:"
+        # puts "Please enter the number of your selection:"
         puts "1. List all fancy cats"
         #user can then select individual cat for more details
         #like history and personality
@@ -39,11 +43,36 @@ class FancyCatFinder::CLI
         #user can then select most/least
         puts "5. Just for fun: random cat facts"
         #will generate a random cat fact from API request hopefully
-        puts "6. Type 'exit' to quit"
-        #to quit
+        puts "6. Or type 'bye' to quit"
+        #to quit/exit program
         puts nil 
-
+        # get_user_input
     end
+
+    def get_user_input
+        puts "Please enter the number of your selection:"
+        input = gets.strip
+        # should quit go first?
+
+        if input_to_i.between(1..5)
+            #continue to run
+        elsif input_to_i == 6 || input.downcase == 'bye'
+            puts "See you next time. Adopt a shelter pet today!"
+            #exit program
+        else
+            puts "Invalid entry! Please try again"
+            get_user_input      #recursion
+        end
+    end
+
+    ##where does the case statement go?##
+    # input = gets.strip
+    # index = input_to_i - 1
+    # if index.between(1..50)
+    # current_cat = list_names[index]
+    # go to current_cat via link
+    # 
+
     
     def list_names
         FancyCatFinder::Cat.all.each.with_index(1) do |cat, idx|
@@ -53,10 +82,8 @@ class FancyCatFinder::CLI
 
 end
 
-#list_cat_names
     # print cat_names
-    # def get_names(name_array) 
-    #     name_array.each do |element|
-    #         element.text
-    #     end
+    # def get_names 
+    #     @cat_names = FancyCatFinder::Cat.all.each {|element| element.text}
     # end
+    
