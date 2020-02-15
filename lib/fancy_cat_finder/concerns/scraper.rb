@@ -2,6 +2,7 @@ class FancyCatFinder::Scraper
     attr_accessor :cat_facts
     BASE_URL = "http://www.vetstreet.com"
 
+##
     def self.scrape_cats
         doc = Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
         cat_info = doc.css("div#hub-breed-list-container a")
@@ -17,19 +18,68 @@ class FancyCatFinder::Scraper
 
         @cat_facts = 
         cats.map do |cat| 
-            update_cat(cat)
+            give_cat_fact(cat)
         end 
-        # binding.pry 
 
+        FancyCatFinder::Cat.all.each do |cat|
+            give_cat_fact(cat)
+            update_cat(cat)  
+        end
+    end
+##
+
+    # def get_page
+    #   Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
+    # end
+
+    # def scrape_cats
+    #    self.get_page.css("div#hub-breed-list-container a")
+    # end
+
+##
+    def self.give_cat_fact(cat)
+        one_cat = Nokogiri::HTML(open(cat.url))
+        cat.fact = one_cat.css("div.interesting-breed-fact p").text
     end
 
     def self.update_cat(cat)
         one_cat = Nokogiri::HTML(open(cat.url))
-        cat.fact = one_cat.css("div.interesting-breed-fact p").text
-    end
+        cat.history = one_cat.css("div.inner-page-section ins.richtext p").text
+    end 
+##
+
+    # def make_cats
+    #     scrape_cats.each do |cat|
+    #         FancyCatFinder::Cat.new_from_index_page(cat)
+    #     end
+    # end
+
+    # def self.update_cat(cat)
+    #     one_cat = Nokogiri::HTML(open(cat.url))
+    #     cat.fact = one_cat.css("div.interesting-breed-fact p").text
+    #     cat.history = one_cat.css("div.inner-page-section ins.richtext p").text
+    # end
     
+    ##
     def self.random_cat_fact
         @cat_facts.sample 
     end
 
 end
+
+# class WorldsBestRestaurants::Scraper
+
+#     def get_page
+#       Nokogiri::HTML(open("https://www.theworlds50best.com/list/1-50-winners"))
+#     end
+  
+#     def scrape_restaurants_index
+#        self.get_page.css("div#t1-50 li")
+#     end
+  
+#     def make_restaurants
+#       scrape_restaurants_index.each do |r|
+#         WorldsBestRestaurants::Restaurant.new_from_index_page(r)
+#       end
+#     end
+#   end
