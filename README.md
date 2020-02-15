@@ -1,8 +1,9 @@
 # FancyCatFinderProject
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fancy_cat_finder_project`. To experiment with that code, run `bin/console` for an interactive prompt.
+Welcome to the Fancy Cat Finder gem! 
 
-TODO: Delete this and the text above, and describe your gem
+TODO: Delete this and the following text, and describe your gem. 
+    In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fancy_cat_finder_project`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 ## Installation
 
@@ -22,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To use the Fancy Cat Finder, run the file from your terminal (?) and then make a selection from the main menu. 
 
 ## Development
 
