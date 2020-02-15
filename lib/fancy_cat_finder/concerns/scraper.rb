@@ -1,25 +1,36 @@
 class FancyCatFinder::Scraper
-
-    def self.scrape_names
-        doc = Nokogiri::HTML(open("http://www.vetstreet.com/cats/breeds"))
+    BASE_URL = "http://www.vetstreet.com"
+    def self.scrape_cats
+        doc = Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
         cat_info = doc.css("div#hub-breed-list-container a")
         # cat_info includes name and url
 
         # cat = FancyCatFinder::Cat.new(name)
 
         # list_names(cat_info)
-        cat_info.each do |info|
+        cats = cat_info.map do |info|
             details = {
                 name: info.text,
-                url: info.attributes['href'].value
+                url: BASE_URL + info.attributes['href'].value
             }
             cat = FancyCatFinder::Cat.new(details)
+        end
+
+        cats.each do |cat|
+            update_cat(cat)
         end
 
         
         # name = info[0].text 
         # url = info[0].attributes['href'].value
 
+    end
+
+    def self.update_cat(cat)
+
+        one_cat = Nokogiri::HTML(open(cat.url))
+
+        cat.fact = one_cat.css("div.interesting-breed-fact p").text
     end
 
     # print cat_names
@@ -31,10 +42,7 @@ class FancyCatFinder::Scraper
 
 
     #get attributes
-    def self.scrape_attributes(cat)
-        # doc = Nokogiri::HTML(open(""))
-        # attributes = doc.css("div#hub-breed-list-container li") 
-    end
+    
 
 
 end

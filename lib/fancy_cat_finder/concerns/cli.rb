@@ -4,7 +4,7 @@ class FancyCatFinder::CLI
     def start
         # welcome user
         puts ""
-        puts "   Welcome to the Fancy Cat Finder!"
+        puts "   Welcome to Fancy Cat Finder!"
         puts ""
         # render_ascii_welcome
         puts "  ^   =   ^   =   ^     =   ^   =   ^ " 
@@ -12,12 +12,14 @@ class FancyCatFinder::CLI
         puts "( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )"
         puts " \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
+        puts "...please be patient while we collect the fancy cats..."
+        puts "" 
 
         # 1st scrape
-        FancyCatFinder::Scraper.scrape_names 
+        # FancyCatFinder::Scraper.scrape_cats
         
         main_menu
-        #get_user_input
+        get_user_input
 
         list_names
     end
@@ -31,7 +33,7 @@ class FancyCatFinder::CLI
     # need "fancy_welcome.txt" file...
 
     def main_menu
-        # puts "Please enter the number of your selection:"
+        # puts "Enter the number of your selection:"
         puts "1. List all fancy cats"
         #user can then select individual cat for more details
         #like history and personality
@@ -43,34 +45,37 @@ class FancyCatFinder::CLI
         #user can then select most/least
         puts "5. Just for fun: random cat facts"
         #will generate a random cat fact from API request hopefully
-        puts "6. Or type 'bye' to quit"
+        puts "6. To quit Fancy Cat Finder"
         #to quit/exit program
         puts nil 
         # get_user_input
     end
 
     def get_user_input
-        puts "Please enter the number of your selection:"
-        input = gets.strip
+        puts "Enter the number of your selection:"
+        input = gets.strip.to_i 
         # should quit go first?
 
-        if input_to_i.between(1..5)
+        if input.between?(1,5)
             #continue to run
-        elsif input_to_i == 6 || input.downcase == 'bye'
+        elsif input == 6 #|| input.to_s.downcase == 'bye'
             puts "See you next time. Adopt a shelter pet today!"
+            puts ""
             #exit program
         else
-            puts "Invalid entry! Please try again"
+            puts "Invalid entry! Please try again."
+            puts ""
             get_user_input      #recursion
         end
     end
 
     ##where does the case statement go?##
+
     # input = gets.strip
     # index = input_to_i - 1
     # if index.between(1..50)
-    # current_cat = list_names[index]
-    # go to current_cat via link
+    # current_cat = list_names[index] ??
+    # go to current_cat via link 2nd scrape
     # 
 
     
