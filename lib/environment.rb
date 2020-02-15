@@ -11,7 +11,6 @@ require_relative "fancy_cat_finder/concerns/scraper"
 # require_all 'lib'
 
 
-
 # module FancyCatFinder
 #   class Error < StandardError; end
 #   # Your code goes here...

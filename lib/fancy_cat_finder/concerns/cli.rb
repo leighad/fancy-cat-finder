@@ -12,16 +12,18 @@ class FancyCatFinder::CLI
         puts "( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )"
         puts " \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
-        puts "...please be patient while we collect the fancy cats..."
-        puts "" 
+        # puts "...please be patient while we collect the fancy cats..."
+        # puts "" 
 
         # 1st scrape
         # FancyCatFinder::Scraper.scrape_cats
+        # may need to change to order here a bit
         
         main_menu
+        
         get_user_input
 
-        list_names
+        # list_names
     end
 
     # def render_ascii_welcome
@@ -36,13 +38,17 @@ class FancyCatFinder::CLI
         # puts "Enter the number of your selection:"
         puts "1. List all fancy cats"
         #user can then select individual cat for more details
+        #2nd scrape
         #like history and personality
         puts "2. List fancy cats by affection level"
         #user can then select most/least
+        #data will be stored from scrape
         puts "3. List fancy cats by energy level"
         #user can then select most/least
+        #data will be stored from scrape
         puts "4. List fancy cats by shedding level"
         #user can then select most/least
+        #data will be stored from scrape
         puts "5. Just for fun: random cat facts"
         #will generate a random cat fact from API request hopefully
         puts "6. To quit Fancy Cat Finder"
@@ -58,6 +64,13 @@ class FancyCatFinder::CLI
 
         if input.between?(1,5)
             #continue to run
+            puts "...please be patient while we collect the fancy cats..."
+            puts "" 
+            FancyCatFinder::Scraper.scrape_cats #
+            
+            #unless FancyCatFinder::Scraper.scrape_cats ????????????
+            respond_to_user_input(input)
+
         elsif input == 6 #|| input.to_s.downcase == 'bye'
             puts "See you next time. Adopt a shelter pet today!"
             puts ""
@@ -67,6 +80,38 @@ class FancyCatFinder::CLI
             puts ""
             get_user_input      #recursion
         end
+    end
+
+    def respond_to_user_input(input)
+        case input
+        when 1
+            list_names
+            puts ""
+            puts "Enter the number next to the cat you wish to view."
+            current_cat = gets.strip.to_i 
+            puts "You selected #{current_cat}"
+            #need build method to go into 2nd scrape here?
+
+        when 2
+            #can either return list of highest and lowest
+            #or allow user to enter to choose
+        when 3
+
+        when 4
+
+            # main_menu
+            # get_user_input
+        when 5
+            #puts sample from array of cat facts
+            puts FancyCatFinder::Scraper.random_cat_fact
+            puts ""
+            main_menu
+            # get_user_input
+            ##how to keep adding to the scraped cats list? 50 + 50 etc...
+        else
+            get_user_input
+        end
+
     end
 
     ##where does the case statement go?##
@@ -83,6 +128,11 @@ class FancyCatFinder::CLI
         FancyCatFinder::Cat.all.each.with_index(1) do |cat, idx|
             puts "#{idx}: #{cat.name}"
         end
+    end
+
+        
+    def random_cat_fact
+        @cat_facts.sample 
     end
 
 end

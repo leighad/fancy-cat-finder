@@ -1,5 +1,5 @@
 class FancyCatFinder::Cat 
-    attr_accessor :name, :url, :affection_level, :energy_level, :shedding_level, :fact
+    attr_accessor :name, :url, :affection_level, :energy_level, :shedding_level, :fact, :cat_facts 
     @@all = []
 
     def initialize(detail_hash)
