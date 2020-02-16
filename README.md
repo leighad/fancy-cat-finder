@@ -1,6 +1,6 @@
 # FancyCatFinderProject
 
-Welcome to the Fancy Cat Finder gem! 
+Welcome to the Fancy Cat Finder! This gem is a command line interface that allows you to view fancy cats and learn more about any cat. You can also get a random fancy cat fact to boost your cat knowledge.  
 
 TODO: Delete this and the following text, and describe your gem. 
     In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/fancy_cat_finder_project`. To experiment with that code, run `bin/console` for an interactive prompt.
