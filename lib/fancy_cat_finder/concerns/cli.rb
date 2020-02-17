@@ -51,11 +51,13 @@ class FancyCatFinder::CLI
             when '1'
                 puts "Here is a list of Fancy Cats:"
                 list_names
-            puts ""
-            puts "Enter the number next to the cat you wish to view."
-            current_cat = gets.strip.to_i 
-            puts "You selected #{current_cat}: 'insert cat name here?'"
-            puts ""
+                puts ""
+                puts "Enter the number next to the cat you wish to view."
+                current_cat = gets.strip.to_i 
+                puts "You selected #{current_cat}: 'insert cat name here?'"
+                puts ""
+                # puts FancyCatFinder::Scraper.update_cat(cat) 
+                # puts cat.history
             when '2'
                 puts "Lol Fancy Cat fact generator!"
                 puts ""
