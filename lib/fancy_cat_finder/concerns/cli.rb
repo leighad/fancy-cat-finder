@@ -11,7 +11,7 @@ class FancyCatFinder::CLI
     def welcome_user
         puts ""
         puts "   Welcome to Fancy Cat Finder!"
-        puts "...please be patient while we collect Fancy Cats..."
+        puts "...please be patient while we gather Fancy Cats..."
         puts ""
         # render_ascii_welcome
         puts "    ^   =   ^   =   ^     =   ^   =   ^ " 
@@ -54,7 +54,7 @@ class FancyCatFinder::CLI
             puts ""
             puts "Enter the number next to the cat you wish to view."
             current_cat = gets.strip.to_i 
-            puts "You selected 'insert cat name'"
+            puts "You selected #{current_cat}: 'insert cat name here?'"
             puts ""
             when '2'
                 puts "Lol Fancy Cat fact generator!"
