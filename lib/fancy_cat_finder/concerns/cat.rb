@@ -22,6 +22,10 @@ class FancyCatFinder::Cat
         @@all
     end
 
+    def self.get_cats
+        FancyCatFinder::Scraper.scrape_cats
+    end
+
 
     # def initialize(name=nil, url=nil) #history=nil, fact=nil
     #     @name = name

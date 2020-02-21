@@ -20,6 +20,7 @@ class FancyCatFinder::CLI
         puts "   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
         # FancyCatFinder::Scraper.scrape_cats
+        FancyCatFinder::Cat.get_cats
     end
 
     # def render_ascii_welcome
@@ -63,9 +64,9 @@ class FancyCatFinder::CLI
                 # puts FancyCatFinder::Scraper.update_cat(cat) 
                 # puts cat.history
             when '2'
-                puts "Lol Fancy Cat fact generator!"
+                puts "Lol Fancy Cat fact generator!".colorize(:blue)
                 puts ""
-                puts FancyCatFinder::Scraper.random_cat_fact
+                puts FancyCatFinder::Scraper.random_cat_fact.colorize(:green)
                 puts ""
             when 'menu' 
                 list_options
