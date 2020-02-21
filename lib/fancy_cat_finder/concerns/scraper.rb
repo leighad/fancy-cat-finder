@@ -1,8 +1,8 @@
 class FancyCatFinder::Scraper
     attr_accessor :cat_facts
+    
     BASE_URL = "http://www.vetstreet.com"
 
-##
     def self.scrape_cats
         doc = Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
         cat_info = doc.css("div#hub-breed-list-container a")
@@ -26,17 +26,7 @@ class FancyCatFinder::Scraper
             update_cat(cat)  
         end
     end
-##
 
-    # def get_page
-    #   Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
-    # end
-
-    # def scrape_cats
-    #    self.get_page.css("div#hub-breed-list-container a")
-    # end
-
-##
     def self.give_cat_fact(cat)
         one_cat = Nokogiri::HTML(open(cat.url))
         @fact = one_cat.css("div.interesting-breed-fact p").text
@@ -46,8 +36,21 @@ class FancyCatFinder::Scraper
         one_cat = Nokogiri::HTML(open(cat.url))
         @history = one_cat.css("div.inner-page-section ins.richtext p").text
     end 
-##
 
+    def self.random_cat_fact
+        @cat_facts.sample 
+    end
+
+
+####
+    # def get_page
+    #   Nokogiri::HTML(open("#{BASE_URL}/cats/breeds"))
+    # end
+
+    # def scrape_cats
+    #    self.get_page.css("div#hub-breed-list-container a")
+    # end
+##
     # def make_cats
     #     scrape_cats.each do |cat|
     #         FancyCatFinder::Cat.new_from_index_page(cat)
@@ -58,11 +61,7 @@ class FancyCatFinder::Scraper
     #     one_cat = Nokogiri::HTML(open(cat.url))
     #     cat.fact = one_cat.css("div.interesting-breed-fact p").text
     #     cat.history = one_cat.css("div.inner-page-section ins.richtext p").text
-    # end
-    
-    ##
-    def self.random_cat_fact
-        @cat_facts.sample 
-    end
+    # end  
+####
 
 end

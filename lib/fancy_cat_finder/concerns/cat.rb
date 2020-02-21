@@ -1,5 +1,6 @@
 class FancyCatFinder::Cat 
-    attr_accessor :name, :url, :history, :fact, :affection, :energy, :grooming, :cat_facts 
+    attr_accessor :name, :url, :history, :fact, :cat_facts
+     #:affection, :energy, :grooming
     @@all = []
 
     def initialize(detail_hash)
@@ -10,6 +11,15 @@ class FancyCatFinder::Cat
             self.send("#{k}=", v) 
         end
         self.save
+    end
+
+    def save
+        @@all << self
+        self 
+    end
+
+    def self.all
+        @@all
     end
 
 
@@ -47,17 +57,8 @@ class FancyCatFinder::Cat
     #     #cat ?
     # end 
 
-    def save
-        @@all << self
-        self 
-    end
-
-    def self.all
-        @@all
-    end
-
-    def self.find(id)
-        self.all[id-1]
-    end
+    # def self.find(id)
+    #     self.all[id-1]
+    # end
 
 end 

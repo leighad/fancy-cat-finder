@@ -79,9 +79,9 @@ class FancyCatFinder::CLI
         end
     end
         
-    def random_cat_fact
-        @cat_facts.sample 
-    end
+    # def random_cat_fact
+    #     @cat_facts.sample 
+    # end
 
     def goodbye
         puts "Thanks for playing- Adopt a shelter cat today!"
