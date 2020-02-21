@@ -10,16 +10,15 @@ class FancyCatFinder::CLI
 
     def welcome_user
         puts ""
-        puts "   Welcome to Fancy Cat Finder!".colorize(:blue)
+        puts "   Welcome to Fancy Cat Finder!".colorize(:cyan)
         puts "...please be patient while we gather the Fancy Cats..."
         puts ""
         # render_ascii_welcome
         puts "    ^   =   ^   =   ^     =   ^   =   ^ " 
         puts "   / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ "
-        puts "  ( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )".colorize(:blue)
+        puts "  ( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )".colorize(:magenta)
         puts "   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
-        # FancyCatFinder::Scraper.scrape_cats
         FancyCatFinder::Cat.get_cats
     end
 
@@ -33,12 +32,12 @@ class FancyCatFinder::CLI
 
     def list_options
         puts ""
-        puts "Here is the Fancy Cat main menu:".colorize(:blue)
+        puts "Here is the Fancy Cat main menu:".colorize(:cyan)
         puts "1. List all Fancy Cats"
         #user can then select individual cat for more details
         #2nd scrape
         puts "2. Random Fancy Cat fact"
-        puts "**type 'exit' at any time to quit Fancy Cats**".colorize(:blue)
+        puts "**type 'exit' at any time to quit Fancy Cats**".colorize(:magenta)
         puts ""
     end
 
@@ -54,24 +53,24 @@ class FancyCatFinder::CLI
             input = gets.strip.downcase
             case input
             when '1'
-                puts "Here is a list of Fancy Cats:"
+                puts "Here is a list of Fancy Cats:".colorize(:cyan)
                 list_names
                 puts ""
                 puts "Enter the number next to the cat you wish to view."
                 current_cat = gets.strip.to_i 
-                puts "You selected #{current_cat}: 'insert cat name here?'"
+                puts "You selected #{current_cat}: 'insert cat name here?'".colorize(:magenta)
                 puts ""
                 # puts FancyCatFinder::Scraper.update_cat(cat) 
                 # puts cat.history
             when '2'
-                puts "Lol Fancy Cat fact generator!".colorize(:blue)
+                puts "Fancy Cat fact generator!".colorize(:cyan)
                 puts ""
-                puts FancyCatFinder::Scraper.random_cat_fact.colorize(:green)
+                puts FancyCatFinder::Scraper.random_cat_fact.colorize(:light_green)
                 puts ""
             when 'menu' 
                 list_options
             else
-                puts "Invalid entry!" unless input == 'exit'
+                puts "Invalid entry!".colorize(:cyan) unless input == 'exit'
                 puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
                 puts ""
             end
@@ -89,7 +88,7 @@ class FancyCatFinder::CLI
     # end
 
     def goodbye
-        puts "Thanks for visiting- Adopt a shelter cat today!".colorize(:blue)
+        puts "Thanks for visiting- Adopt a shelter cat today!".colorize(:cyan)
         puts ""
         puts "                  /\\_/\\"
         puts "                 ( o.o )"
