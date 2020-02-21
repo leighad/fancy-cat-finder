@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'pry'
 require 'colorize' # '~> 0.8.1'
+# require 'colorized_string'
 
 require_relative "fancy_cat_finder/version"
 require_relative "fancy_cat_finder/concerns/cat"

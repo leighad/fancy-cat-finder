@@ -10,16 +10,16 @@ class FancyCatFinder::CLI
 
     def welcome_user
         puts ""
-        puts "   Welcome to Fancy Cat Finder!"
-        puts "...please be patient while we gather Fancy Cats..."
+        puts "   Welcome to Fancy Cat Finder!".colorize(:blue)
+        puts "...please be patient while we gather the Fancy Cats..."
         puts ""
         # render_ascii_welcome
         puts "    ^   =   ^   =   ^     =   ^   =   ^ " 
         puts "   / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ "
-        puts "  ( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )"
+        puts "  ( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )".colorize(:blue)
         puts "   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
-        FancyCatFinder::Scraper.scrape_cats
+        # FancyCatFinder::Scraper.scrape_cats
     end
 
     # def render_ascii_welcome
@@ -32,17 +32,21 @@ class FancyCatFinder::CLI
 
     def list_options
         puts ""
-        puts "Here is the Fancy Cat main menu:"
+        puts "Here is the Fancy Cat main menu:".colorize(:blue)
         puts "1. List all Fancy Cats"
         #user can then select individual cat for more details
         #2nd scrape
         puts "2. Random Fancy Cat fact"
-        puts "**type 'exit' at any time to quit Fancy Cats**"
+        puts "**type 'exit' at any time to quit Fancy Cats**".colorize(:blue)
         puts ""
     end
 
     def main_menu
         input = nil
+        if input == 'exit'
+            goodbye
+        end
+
         while input != 'exit'
             puts "Enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:"
             puts ""
@@ -66,8 +70,8 @@ class FancyCatFinder::CLI
             when 'menu' 
                 list_options
             else
-                puts "Invalid entry!"
-                puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:"
+                puts "Invalid entry!" unless input == 'exit'
+                puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
                 puts ""
             end
         end
@@ -84,7 +88,7 @@ class FancyCatFinder::CLI
     # end
 
     def goodbye
-        puts "Thanks for playing- Adopt a shelter cat today!"
+        puts "Thanks for visiting- Adopt a shelter cat today!".colorize(:blue)
         puts ""
         puts "                  /\\_/\\"
         puts "                 ( o.o )"
