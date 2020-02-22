@@ -34,9 +34,9 @@ class FancyCatFinder::CLI
         puts ""
         puts "Here is the Fancy Cat main menu:".colorize(:cyan)
         puts "1. List all Fancy Cats"
-        #user can then select individual cat for more details
-        #2nd scrape
+        #want user to be able to select individual cat for more details
         puts "2. Random Fancy Cat fact"
+        puts "3. Random Fancy Cat history"
         puts "**type 'exit' at any time to quit Fancy Cats**".colorize(:magenta)
         puts ""
     end
@@ -57,15 +57,20 @@ class FancyCatFinder::CLI
                 list_names
                 puts ""
                 puts "Enter the number next to the cat you wish to view."
-                current_cat = gets.strip.to_i 
-                puts "You selected #{current_cat}: 'insert cat name here?'".colorize(:magenta)
-                puts ""
+                current_idx = gets.strip.to_i
                 # puts FancyCatFinder::Scraper.update_cat(cat) 
+                puts "You selected #{current_idx}".colorize(:magenta)  #: #{cat.name}"
                 # puts cat.history
+                puts ""
             when '2'
                 puts "Fancy Cat fact generator!".colorize(:cyan)
                 puts ""
                 puts FancyCatFinder::Scraper.random_cat_fact.colorize(:light_green)
+                puts ""
+            when '3'
+                puts "Fancy Cat history generator!".colorize(:magenta)
+                puts ""
+                puts FancyCatFinder::Scraper.random_cat_info.colorize(:light_magenta)
                 puts ""
             when 'menu' 
                 list_options
@@ -82,10 +87,6 @@ class FancyCatFinder::CLI
             puts "#{idx}: #{cat.name}"
         end
     end
-        
-    # def random_cat_fact
-    #     @cat_facts.sample 
-    # end
 
     def goodbye
         puts "Thanks for visiting- Adopt a shelter cat today!".colorize(:cyan)

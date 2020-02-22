@@ -1,5 +1,5 @@
 class FancyCatFinder::Scraper
-    attr_accessor :cat_facts
+    attr_accessor :cat_facts, :cat_info
     
     BASE_URL = "http://www.vetstreet.com"
 
@@ -21,7 +21,12 @@ class FancyCatFinder::Scraper
             give_cat_fact(cat)
         end 
 
-        FancyCatFinder::Cat.all.each do |cat|
+        @cat_info = 
+        cats.map do |cat| 
+            update_cat(cat)
+        end 
+
+        FancyCatFinder::Cat.all.map do |cat|
             give_cat_fact(cat)
             update_cat(cat)  
         end
@@ -34,13 +39,18 @@ class FancyCatFinder::Scraper
 
     def self.update_cat(cat)
         one_cat = Nokogiri::HTML(open(cat.url))
-        @history = one_cat.css("div.inner-page-section ins.richtext p").text
+        @info = one_cat.css("div.inner-page-section ins.richtext p").text
     end 
 
     def self.random_cat_fact
         @cat_facts.sample 
     end
 
+    def self.random_cat_info
+        @cat_info.sample 
+    end
+    
+end
 
 ####
     # def get_page
@@ -63,5 +73,3 @@ class FancyCatFinder::Scraper
     #     cat.history = one_cat.css("div.inner-page-section ins.richtext p").text
     # end  
 ####
-
-end
