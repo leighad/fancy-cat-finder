@@ -1,6 +1,7 @@
 class FancyCatFinder::Cat 
-    attr_accessor :name, :url, :cat_facts, :cat_info, :history, :fact
-     #:affection, :energy, :grooming
+    attr_accessor :name, :url, :cat_facts, :cat_info
+    #:history, :fact
+    #:affection, :energy, :grooming
     @@all = []
 
     def initialize(detail_hash)
@@ -27,6 +28,7 @@ class FancyCatFinder::Cat
     end
 
     def self.educate_cats
+        #seems like a good place to connect cat with .fact and .history
         @cat_facts = 
         @@all.map do |cat| 
             FancyCatFinder::Scraper.give_cat_fact(cat)
@@ -45,8 +47,8 @@ class FancyCatFinder::Cat
     def self.random_cat_info
         @cat_info.sample 
     end
-
 end 
+
 
     # def initialize(name=nil, url=nil) #history=nil, fact=nil
     #     @name = name

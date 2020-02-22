@@ -1,5 +1,5 @@
 class FancyCatFinder::CLI 
-    attr_accessor :cat_names
+    # attr_accessor :cat_names
 
     def start
         welcome_user 
@@ -11,7 +11,6 @@ class FancyCatFinder::CLI
     def welcome_user
         puts ""
         puts "   Welcome to Fancy Cat Finder!".colorize(:cyan)
-        puts "...please be patient while we gather the Fancy Cats..."
         puts ""
         # render_ascii_welcome
         puts "    ^   =   ^   =   ^     =   ^   =   ^ " 
@@ -19,17 +18,11 @@ class FancyCatFinder::CLI
         puts "  ( F ) A ) N ) C ) Y ) ( C ) A ) T ) S )".colorize(:magenta)
         puts "   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
+        puts "...please be patient while we gather the Fancy Cats..."
+        puts ""
         FancyCatFinder::Cat.get_cats
         FancyCatFinder::Cat.educate_cats
     end
-
-    # def render_ascii_welcome
-    #     File.readlines("fancy_welcome.txt") do |line|
-    #         puts line
-    #     end
-    # end
-    ###### need to figure out how to use this ######
-    # need "fancy_welcome.txt" file...
 
     def list_options
         puts ""
@@ -98,6 +91,15 @@ class FancyCatFinder::CLI
         puts ""
     end
 end
+
+
+# def render_ascii_welcome
+#     File.readlines("fancy_welcome.txt") do |line|
+#         puts line
+#     end
+# end
+###### need to figure out how to use this ######
+# need "fancy_welcome.txt" file...
 
 
 # def main_menu
