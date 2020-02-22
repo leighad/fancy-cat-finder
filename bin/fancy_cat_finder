@@ -3,3 +3,4 @@
 require_relative '../lib/environment'
 
 FancyCatFinder::CLI.new.start 
+
