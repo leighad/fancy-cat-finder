@@ -1,5 +1,5 @@
 class FancyCatFinder::Scraper
-    attr_accessor :cat_facts, :cat_info
+    # attr_accessor :cat_facts, :cat_info
     
     BASE_URL = "http://www.vetstreet.com"
 
@@ -15,21 +15,6 @@ class FancyCatFinder::Scraper
             }
             cat = FancyCatFinder::Cat.new(details)
         end
-
-        @cat_facts = 
-        cats.map do |cat| 
-            give_cat_fact(cat)
-        end 
-
-        @cat_info = 
-        cats.map do |cat| 
-            update_cat(cat)
-        end 
-
-        FancyCatFinder::Cat.all.map do |cat|
-            give_cat_fact(cat)
-            update_cat(cat)  
-        end
     end
 
     def self.give_cat_fact(cat)
@@ -42,14 +27,6 @@ class FancyCatFinder::Scraper
         @info = one_cat.css("div.inner-page-section ins.richtext p").text
     end 
 
-    def self.random_cat_fact
-        @cat_facts.sample 
-    end
-
-    def self.random_cat_info
-        @cat_info.sample 
-    end
-    
 end
 
 ####

@@ -20,6 +20,7 @@ class FancyCatFinder::CLI
         puts "   \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ "
         puts ""
         FancyCatFinder::Cat.get_cats
+        FancyCatFinder::Cat.educate_cats
     end
 
     # def render_ascii_welcome
@@ -58,19 +59,19 @@ class FancyCatFinder::CLI
                 puts ""
                 puts "Enter the number next to the cat you wish to view."
                 current_idx = gets.strip.to_i
-                # puts FancyCatFinder::Scraper.update_cat(cat) 
-                puts "You selected #{current_idx}".colorize(:magenta)  #: #{cat.name}"
-                # puts cat.history
+                # if current_idx.between(1..50)
+                puts "You selected #{current_idx}".colorize(:magenta)  
+                #: #{cat.name}"
                 puts ""
             when '2'
                 puts "Fancy Cat fact generator!".colorize(:cyan)
                 puts ""
-                puts FancyCatFinder::Scraper.random_cat_fact.colorize(:light_green)
+                puts FancyCatFinder::Cat.random_cat_fact.colorize(:light_green)
                 puts ""
             when '3'
                 puts "Fancy Cat history generator!".colorize(:magenta)
                 puts ""
-                puts FancyCatFinder::Scraper.random_cat_info.colorize(:light_magenta)
+                puts FancyCatFinder::Cat.random_cat_info.colorize(:light_magenta)
                 puts ""
             when 'menu' 
                 list_options
