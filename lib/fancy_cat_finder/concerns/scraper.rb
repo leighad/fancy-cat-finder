@@ -1,6 +1,4 @@
-class FancyCatFinder::Scraper
-    # attr_accessor :cat_facts, :cat_info
-    
+class FancyCatFinder::Scraper    
     BASE_URL = "http://www.vetstreet.com"
 
     def self.scrape_cats
@@ -8,7 +6,7 @@ class FancyCatFinder::Scraper
         cat_info = doc.css("div#hub-breed-list-container a")
         # cat_info includes name and url
 
-        cats = cat_info.map do |info|
+        cat_info.map do |info|
             details = {
                 name: info.text,
                 url: BASE_URL + info.attributes['href'].value

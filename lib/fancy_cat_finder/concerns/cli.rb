@@ -1,6 +1,4 @@
 class FancyCatFinder::CLI 
-    # attr_accessor :cat_names
-
     def start
         welcome_user 
         list_options

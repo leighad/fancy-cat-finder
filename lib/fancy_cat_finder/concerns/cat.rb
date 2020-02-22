@@ -1,6 +1,5 @@
 class FancyCatFinder::Cat 
-    attr_accessor :name, :url, :cat_facts, :cat_info
-    #:history, :fact
+    attr_accessor :name, :url, :cat_facts, :cat_info, :history, :fact
     #:affection, :energy, :grooming
     @@all = []
 
