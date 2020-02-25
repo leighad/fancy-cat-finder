@@ -73,10 +73,9 @@ class FancyCatFinder::CLI
         all_cats = FancyCatFinder::Cat.all
         num = all_cats.size
         # puts "Enter the number (1 to #{num}) next to the cat you wish to view:"
-        puts "Please enter the number next to the Fancy Cat you wish to know more about:"
+        puts "Please enter the number next to the Fancy Cat you wish to know more about:".colorize(:cyan) 
 
         input = gets.strip
-        # current_idx = input.to_i - 1
         current_idx = input.to_i
 
         if input.downcase == 'exit'
@@ -84,23 +83,15 @@ class FancyCatFinder::CLI
         end
 
         if current_idx.between?(1, num)
-            # current_cat = all_cats[current_idx]
             current_cat = all_cats[current_idx - 1]
             puts "You selected Fancy Cat ##{input}: the #{current_cat.name}. Great choice!".colorize(:magenta)  
-            # puts ""
             choose_info(current_cat)
-        # elsif input.downcase == "exit"
-        #     goodbye
         elsif input.downcase == "menu"
             main_menu
         else
             error
         end
-
-        # else
-        #     error unless input == 'exit'
-        #     puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
-        #     puts ""
+        
     end
 
     def choose_info(cat)
