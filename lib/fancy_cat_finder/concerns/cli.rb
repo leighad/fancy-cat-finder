@@ -1,6 +1,7 @@
 class FancyCatFinder::CLI 
     def start
         welcome_user 
+        sleep(2)
         list_options
         main_menu
         goodbye
@@ -8,7 +9,7 @@ class FancyCatFinder::CLI
 
     def welcome_user
         puts ""
-        puts "   Welcome to Fancy Cat Finder!".colorize(:cyan)
+        puts "   Welcome to the Fancy Cat Finder!".colorize(:cyan)
         puts ""
         # render_ascii_welcome
         puts "    ^   =   ^   =   ^     =   ^   =   ^ " 
@@ -25,7 +26,6 @@ class FancyCatFinder::CLI
         puts ""
         puts "Here is the Fancy Cat main menu:".colorize(:cyan)
         puts "1. List all Fancy Cats"
-        #want user to be able to select individual cat for more details
         puts "2. Random Fancy Cat fact"
         puts "3. Random Fancy Cat history"
         puts "**type 'exit' at any time to quit Fancy Cats**".colorize(:magenta)
@@ -48,6 +48,7 @@ class FancyCatFinder::CLI
                 list_names
                 puts ""
                 choose_cat
+                puts ""
             when '2'
                 puts "Fancy Cat fact generator!".colorize(:cyan)
                 puts ""
@@ -62,7 +63,7 @@ class FancyCatFinder::CLI
                 list_options
             else
                 error unless input == 'exit'
-                puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
+                # puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
                 puts ""
             end
         end
@@ -71,31 +72,50 @@ class FancyCatFinder::CLI
     def choose_cat
         all_cats = FancyCatFinder::Cat.all
         num = all_cats.size
-        puts "Enter the number (1 to #{num}) next to the cat you wish to view."
+        # puts "Enter the number (1 to #{num}) next to the cat you wish to view:"
+        puts "Please enter the number next to the Fancy Cat you wish to know more about:"
+
         input = gets.strip
-        current_idx = input.to_i - 1
-        if current_idx.between?(1,num)
-            current_cat = all_cats[current_idx]
-            puts "You selected #{current_cat.name}".colorize(:magenta)  
-            puts ""
-            choose_info(current_cat)
-        elsif input.downcase == "exit"
+        # current_idx = input.to_i - 1
+        current_idx = input.to_i
+
+        if input.downcase == 'exit'
             goodbye
-        elsif input.downcase == "menu"
-            puts "Ok, going back to menu"
         end
+
+        if current_idx.between?(1, num)
+            # current_cat = all_cats[current_idx]
+            current_cat = all_cats[current_idx - 1]
+            puts "You selected Fancy Cat ##{input}: the #{current_cat.name}. Great choice!".colorize(:magenta)  
+            # puts ""
+            choose_info(current_cat)
+        # elsif input.downcase == "exit"
+        #     goodbye
+        elsif input.downcase == "menu"
+            main_menu
+        else
+            error
+        end
+
+        # else
+        #     error unless input == 'exit'
+        #     puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
+        #     puts ""
     end
 
     def choose_info(cat)
-        puts "Enter the number 1 to see a fact or 2 to see an overview about #{cat.name}"
+        puts ""
+        puts "Enter #{'1'.colorize(:magenta)} for an overview or #{'2'.colorize(:magenta)} to read a fact about the #{cat.name.colorize(:magenta)}:"
+        puts ""
+        puts "Don't forget! You can always type 'menu' for main menu, or 'exit' to quit.".colorize(:cyan)
         input = gets.strip
 
         case input.downcase
         when "1"
-            puts cat.fact
+            puts cat.info.colorize(:light_green)
             choose_info(cat)
         when "2"
-            puts cat.info
+            puts cat.fact.colorize(:light_magenta)
             choose_info(cat)
         when "exit"
             goodbye
@@ -103,7 +123,7 @@ class FancyCatFinder::CLI
             list_options
         else
             error
-            choose_info
+            choose_info(cat)
         end
     end
 
