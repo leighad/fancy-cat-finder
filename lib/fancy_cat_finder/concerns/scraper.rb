@@ -17,12 +17,12 @@ class FancyCatFinder::Scraper
 
     def self.give_cat_fact(cat)
         one_cat = Nokogiri::HTML(open(cat.url))
-        @fact = one_cat.css("div.interesting-breed-fact p").text
+        cat.fact = one_cat.css("div.interesting-breed-fact p").text
     end
 
     def self.update_cat(cat)
         one_cat = Nokogiri::HTML(open(cat.url))
-        @info = one_cat.css("div.inner-page-section ins.richtext p").text
+        cat.info = one_cat.css("div.inner-page-section ins.richtext p").text
     end 
 
 end

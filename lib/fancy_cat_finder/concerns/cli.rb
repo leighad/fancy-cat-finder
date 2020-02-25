@@ -19,7 +19,6 @@ class FancyCatFinder::CLI
         puts "...please be patient while we gather the Fancy Cats..."
         puts ""
         FancyCatFinder::Cat.get_cats
-        FancyCatFinder::Cat.educate_cats
     end
 
     def list_options
@@ -48,12 +47,7 @@ class FancyCatFinder::CLI
                 puts "Here is a list of Fancy Cats:".colorize(:cyan)
                 list_names
                 puts ""
-                puts "Enter the number next to the cat you wish to view."
-                current_idx = gets.strip.to_i
-                # if current_idx.between(1..50)
-                puts "You selected #{current_idx}".colorize(:magenta)  
-                #: #{cat.name}"
-                puts ""
+                choose_cat
             when '2'
                 puts "Fancy Cat fact generator!".colorize(:cyan)
                 puts ""
@@ -67,11 +61,54 @@ class FancyCatFinder::CLI
             when 'menu' 
                 list_options
             else
-                puts "Invalid entry!".colorize(:cyan) unless input == 'exit'
+                error unless input == 'exit'
                 puts "Please enter a number from the main menu, type 'menu' for main menu, or type 'exit' to quit:" unless input == 'exit'
                 puts ""
             end
         end
+    end
+
+    def choose_cat
+        all_cats = FancyCatFinder::Cat.all
+        num = all_cats.size
+        puts "Enter the number (1 to #{num}) next to the cat you wish to view."
+        input = gets.strip
+        current_idx = input.to_i - 1
+        if current_idx.between?(1,num)
+            current_cat = all_cats[current_idx]
+            puts "You selected #{current_cat.name}".colorize(:magenta)  
+            puts ""
+            choose_info(current_cat)
+        elsif input.downcase == "exit"
+            goodbye
+        elsif input.downcase == "menu"
+            puts "Ok, going back to menu"
+        end
+    end
+
+    def choose_info(cat)
+        puts "Enter the number 1 to see a fact or 2 to see an overview about #{cat.name}"
+        input = gets.strip
+
+        case input.downcase
+        when "1"
+            puts cat.fact
+            choose_info(cat)
+        when "2"
+            puts cat.info
+            choose_info(cat)
+        when "exit"
+            goodbye
+        when "menu"
+            list_options
+        else
+            error
+            choose_info
+        end
+    end
+
+    def error
+        puts "Invalid entry!".colorize(:cyan)
     end
 
     def list_names
@@ -87,6 +124,7 @@ class FancyCatFinder::CLI
         puts "                 ( o.o )"
         puts "                  > ^ <"
         puts ""
+        exit
     end
 end
 

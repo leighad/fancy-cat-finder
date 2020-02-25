@@ -1,5 +1,5 @@
 class FancyCatFinder::Cat 
-    attr_accessor :name, :url, :cat_facts, :cat_info, :history, :fact
+    attr_accessor :name, :url, :info, :fact, :updated
     #:affection, :energy, :grooming
     @@all = []
 
@@ -26,25 +26,37 @@ class FancyCatFinder::Cat
         FancyCatFinder::Scraper.scrape_cats
     end
 
-    def self.educate_cats
-        #seems like a good place to connect cat with .fact and .history
-        @cat_facts = 
-        @@all.map do |cat| 
-            FancyCatFinder::Scraper.give_cat_fact(cat)
-        end 
+    # def self.educate_cats
+    #     #seems like a good place to connect cat with .fact and .history
+    #     @cat_facts = 
+    #     @@all.map do |cat| 
+    #         FancyCatFinder::Scraper.give_cat_fact(cat)
+    #     end 
     
-        @cat_info = 
-        @@all.map do |cat| 
-            FancyCatFinder::Scraper.update_cat(cat)
-        end 
+    #     @cat_info = 
+    #     @@all.map do |cat| 
+    #         FancyCatFinder::Scraper.update_cat(cat)
+    #     end 
+    # end
+
+    def fact
+        @fact ||=  FancyCatFinder::Scraper.give_cat_fact(self)
+    end
+
+    def info
+        @info ||=  FancyCatFinder::Scraper.update_cat(self)
     end
 
     def self.random_cat_fact
-        @cat_facts.sample 
+        sample.fact
+    end
+
+    def self.sample
+        self.all.sample
     end
 
     def self.random_cat_info
-        @cat_info.sample 
+        sample.info
     end
 end 
 
